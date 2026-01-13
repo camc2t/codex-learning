@@ -86,20 +86,20 @@ const buildPrompt = (inputs: PromptInputs, style: "structured" | "surgical") => 
 
   if (style === "structured") {
     return [
-      "You are the implementation agent. Follow instructions exactly.",
+      "You are the assistant. Follow instructions exactly.",
       `Objective:\n${enriched.task}`,
       `Context:\n${enriched.context}`,
       `Acceptance criteria:\n${enriched.acceptance}`,
-      "Rules:\n- Keep scope tight.\n- Follow existing patterns and style.\n- Do not change unrelated files.\n- If anything is ambiguous, ask a targeted question before coding."
+      "Rules:\n- Keep scope tight.\n- Use clear, simple language.\n- Do not add unrelated content.\n- If anything is ambiguous, ask a focused question before answering."
     ].join("\n\n");
   }
 
   return [
-    "Execute this change precisely and return only what is asked.",
+    "Complete the task precisely and return only what is asked.",
     `Task: ${enriched.task}`,
     `Context: ${enriched.context}`,
     `Definition of done: ${enriched.acceptance}`,
-    "Output format:\n1) Short plan (2-5 bullets)\n2) Exact code diff only\n3) Verification steps"
+    "Output format:\n1) Short plan (2-5 bullets)\n2) Direct answer\n3) Any assumptions or missing info"
   ].join("\n");
 };
 
