@@ -12,6 +12,9 @@ export async function Nav() {
         Codex Path
       </Link>
       <div className="flex items-center gap-4 text-sm">
+        <Link href="/prompt-builder" className="hover:underline">
+          Prompt Builder
+        </Link>
         <Link href="/tracks" className="hover:underline">
           Tracks
         </Link>
