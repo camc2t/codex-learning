@@ -40,6 +40,8 @@ const buildPrompt = (inputs: PromptInputs, style: "structured" | "surgical") => 
 
 export function PromptBuilderStandalone() {
   const [inputs, setInputs] = useState<PromptInputs>(emptyInputs);
+  const [showPrompts, setShowPrompts] = useState(false);
+  const [copied, setCopied] = useState<"structured" | "surgical" | null>(null);
 
   const structuredPrompt = useMemo(
     () => buildPrompt(inputs, "structured"),
@@ -94,21 +96,74 @@ export function PromptBuilderStandalone() {
             </label>
           ))}
         </div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <button
+            type="button"
+            className="rounded-full bg-ink px-5 py-2 text-xs uppercase tracking-wide text-white"
+            onClick={() => setShowPrompts(true)}
+          >
+            Generate prompts
+          </button>
+          <button
+            type="button"
+            className="rounded-full border border-black/20 px-5 py-2 text-xs uppercase tracking-wide"
+            onClick={() => {
+              setInputs(emptyInputs);
+              setShowPrompts(false);
+            }}
+          >
+            Clear
+          </button>
+        </div>
       </div>
 
       <div className="space-y-6">
-        <div className="rounded-3xl border border-black/10 bg-white p-6">
-          <h3 className="text-lg font-display">Prompt A: Structured spec</h3>
-          <pre className="mt-3 whitespace-pre-wrap rounded-2xl bg-black/90 p-4 text-xs text-white">
-            {structuredPrompt}
-          </pre>
-        </div>
-        <div className="rounded-3xl border border-black/10 bg-white p-6">
-          <h3 className="text-lg font-display">Prompt B: Surgical instructions</h3>
-          <pre className="mt-3 whitespace-pre-wrap rounded-2xl bg-black/90 p-4 text-xs text-white">
-            {surgicalPrompt}
-          </pre>
-        </div>
+        {showPrompts ? (
+          <>
+            <div className="rounded-3xl border border-black/10 bg-white p-6">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-lg font-display">Prompt A: Structured spec</h3>
+                <button
+                  type="button"
+                  className="rounded-full border border-black/20 px-3 py-1 text-[10px] uppercase tracking-wide"
+                  onClick={() => {
+                    navigator.clipboard.writeText(structuredPrompt);
+                    setCopied("structured");
+                    setTimeout(() => setCopied(null), 1500);
+                  }}
+                >
+                  {copied === "structured" ? "Copied" : "Copy"}
+                </button>
+              </div>
+              <pre className="mt-3 whitespace-pre-wrap rounded-2xl bg-black/90 p-4 text-xs text-white">
+                {structuredPrompt}
+              </pre>
+            </div>
+            <div className="rounded-3xl border border-black/10 bg-white p-6">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-lg font-display">Prompt B: Surgical instructions</h3>
+                <button
+                  type="button"
+                  className="rounded-full border border-black/20 px-3 py-1 text-[10px] uppercase tracking-wide"
+                  onClick={() => {
+                    navigator.clipboard.writeText(surgicalPrompt);
+                    setCopied("surgical");
+                    setTimeout(() => setCopied(null), 1500);
+                  }}
+                >
+                  {copied === "surgical" ? "Copied" : "Copy"}
+                </button>
+              </div>
+              <pre className="mt-3 whitespace-pre-wrap rounded-2xl bg-black/90 p-4 text-xs text-white">
+                {surgicalPrompt}
+              </pre>
+            </div>
+          </>
+        ) : (
+          <div className="rounded-3xl border border-dashed border-black/20 bg-white/70 p-6 text-sm text-black/60">
+            Fill in the fields, then click “Generate prompts” to see the results.
+          </div>
+        )}
       </div>
     </div>
   );
