@@ -1,0 +1,11 @@
+{
+  "id": "exercise-prompt-basics",
+  "title": "Prompt basics",
+  "prompt": "Write JavaScript that prints 'Codex ready' exactly once.",
+  "starterCode": "// Use console.log to print the message\n",
+  "expectedOutput": "Codex ready",
+  "hints": [
+    "Use console.log with a string.",
+    "The output must match exactly, including capitalization."
+  ]
+}

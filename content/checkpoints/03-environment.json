@@ -1,0 +1,7 @@
+{
+  "id": "checkpoint-environment",
+  "title": "Check your environment",
+  "instructions": "Run the command to verify Node is installed. Paste the output.",
+  "command": "node -v",
+  "expectedPatterns": ["v\\d+\\.\\d+\\.\\d+"]
+}

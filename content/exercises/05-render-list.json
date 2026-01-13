@@ -1,0 +1,11 @@
+{
+  "id": "exercise-render-list",
+  "title": "Render a list",
+  "prompt": "Create an array with three lesson titles and print the number of lessons in the format 'Lessons: 3'.",
+  "starterCode": "const lessons = [];\n\n// TODO: add three titles and print the count\n",
+  "expectedOutput": "Lessons: 3",
+  "hints": [
+    "Push three strings into the array.",
+    "Use lessons.length to print the count."
+  ]
+}

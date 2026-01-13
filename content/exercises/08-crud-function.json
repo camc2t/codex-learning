@@ -1,0 +1,11 @@
+{
+  "id": "exercise-crud-function",
+  "title": "CRUD thinking",
+  "prompt": "Write a function addListing that takes an array and a title, pushes the title, and prints all titles joined by ', '.",
+  "starterCode": "const listings = ["Bike", "Desk"];\n\nfunction addListing(items, title) {\n  // TODO\n}\n\naddListing(listings, "Lamp");\n",
+  "expectedOutput": "Bike, Desk, Lamp",
+  "hints": [
+    "Use items.push(title).",
+    "console.log(items.join(', '))."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "checkpoint-dev-server",
+  "title": "Run the dev server",
+  "instructions": "Start the dev server and paste the terminal output line that says it is ready.",
+  "command": "npm run dev",
+  "expectedPatterns": ["Ready", "localhost"]
+}

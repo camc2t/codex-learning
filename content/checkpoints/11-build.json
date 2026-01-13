@@ -1,0 +1,7 @@
+{
+  "id": "checkpoint-build",
+  "title": "Build the app",
+  "instructions": "Run a production build and paste the output that shows it compiled.",
+  "command": "npm run build",
+  "expectedPatterns": ["Compiled successfully", "Route"]
+}

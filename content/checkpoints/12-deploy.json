@@ -1,0 +1,12 @@
+{
+  "id": "deploy-capstone",
+  "title": "Deploy your capstone",
+  "checklist": [
+    "Push your code to GitHub",
+    "Create a Vercel project and connect the repo",
+    "Set DATABASE_URL and NextAuth env vars",
+    "Run prisma migrate deploy in Vercel build step",
+    "Confirm the live site works"
+  ],
+  "submitLabel": "Mark deployment complete"
+}

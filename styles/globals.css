@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-sand text-ink font-body;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+a {
+  @apply text-ink;
+}
+
+code {
+  @apply rounded bg-black/5 px-1 py-0.5 text-sm;
+}
+
+pre {
+  @apply rounded-lg bg-black/90 p-4 text-sm text-white overflow-x-auto;
+}
+
+input, textarea, select {
+  @apply focus:outline-none;
+}
+
+.container {
+  @apply mx-auto w-full max-w-6xl px-6;
+}

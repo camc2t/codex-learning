@@ -1,0 +1,7 @@
+{
+  "id": "checkpoint-prisma",
+  "title": "Run Prisma migration",
+  "instructions": "Run the Prisma migration and paste the output that confirms it applied.",
+  "command": "npx prisma migrate dev --name init",
+  "expectedPatterns": ["Applied", "migrations"]
+}

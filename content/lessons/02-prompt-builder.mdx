@@ -1,0 +1,89 @@
+# Prompt Builder Mastery
+
+The Prompt Builder turns fuzzy ideas into an actionable request for Codex. Your goal is to be precise about the outcome, constraints, and how to verify.
+
+## How to use it
+
+- Fill each field with concrete details (no vague language).
+- Include what "done" looks like and how you'll check it.
+- Keep scope tight: only the files and features you need.
+
+## Exercise 1: Add a hero section
+
+**Goal**: Add a hero section to the landing page with a headline, subhead, and CTA button.
+
+Fill in the Prompt Builder using this info, then compare to the gold prompt below.
+
+**Gold prompt**
+
+```
+Objective:
+Add a hero section to the landing page with a headline, subhead, and CTA button.
+
+Constraints:
+Next.js App Router + Tailwind. Keep existing layout and colors. Do not change auth flow.
+
+Files to touch:
+app/page.tsx, styles/globals.css (only if needed for hero spacing)
+
+Acceptance criteria:
+Hero shows headline, subhead, and CTA button above the fold on desktop and mobile.
+No existing sections removed.
+
+Commands to run:
+npm run dev
+```
+
+## Exercise 2: Add a protected dashboard banner
+
+**Goal**: Show a "You are signed in" banner only on `/dashboard` when a session exists.
+
+**Gold prompt**
+
+```
+Objective:
+Show a "You are signed in" banner at the top of /dashboard when a session exists.
+
+Constraints:
+Use getServerSession; no client-side session hooks. Keep styling minimal.
+
+Files to touch:
+app/dashboard/page.tsx
+
+Acceptance criteria:
+Banner appears only for signed-in users and does not appear for signed-out users.
+
+Commands to run:
+npm run dev
+```
+
+## Exercise 3: Add an exercise hint
+
+**Goal**: Add an extra hint to the "Prompt basics exercise".
+
+**Gold prompt**
+
+```
+Objective:
+Add one extra hint to the Prompt basics exercise.
+
+Constraints:
+Keep hint short and actionable. Do not change expected output.
+
+Files to touch:
+content/exercises/02-prompt-basics.json
+
+Acceptance criteria:
+The exercise renders with the new hint added at the end of the list.
+
+Commands to run:
+npm run dev
+```
+
+## Why these prompts work
+
+- Clear objective with a single outcome.
+- Constraints prevent scope creep.
+- Files to touch prevent surprise edits.
+- Acceptance criteria create an objective check.
+- Commands to run enforce verification.
