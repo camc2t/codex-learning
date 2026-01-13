@@ -5,48 +5,36 @@ import { useMemo, useState } from "react";
 type PromptInputs = {
   task: string;
   context: string;
-  constraints: string;
-  files: string;
   acceptance: string;
-  verification: string;
 };
 
 const emptyInputs: PromptInputs = {
   task: "",
   context: "",
-  constraints: "",
-  files: "",
-  acceptance: "",
-  verification: ""
+  acceptance: ""
 };
 
 const buildPrompt = (inputs: PromptInputs, style: "structured" | "surgical") => {
   const task = inputs.task.trim() || "Describe the change you want.";
   const context = inputs.context.trim() || "Relevant background and current behavior.";
-  const constraints = inputs.constraints.trim() || "Stack, scope limits, do-not-change items.";
-  const files = inputs.files.trim() || "List files or directories to edit.";
   const acceptance = inputs.acceptance.trim() || "Define observable outcomes.";
-  const verification = inputs.verification.trim() || "Commands or checks to run.";
 
   if (style === "structured") {
     return [
+      "You are the implementation agent. Follow instructions exactly.",
       `Objective:\n${task}`,
       `Context:\n${context}`,
-      `Constraints:\n${constraints}`,
-      `Files to touch:\n${files}`,
       `Acceptance criteria:\n${acceptance}`,
-      `Commands to run:\n${verification}`
+      "Rules:\n- Keep scope tight.\n- Follow existing patterns and style.\n- Do not change unrelated files.\n- If anything is ambiguous, ask a targeted question before coding."
     ].join("\n\n");
   }
 
   return [
-    `You are modifying an existing codebase. Task: ${task}`,
+    "Execute this change precisely and return only what is asked.",
+    `Task: ${task}`,
     `Context: ${context}`,
-    `Constraints: ${constraints}`,
-    `Files: ${files}`,
     `Definition of done: ${acceptance}`,
-    `Verification: ${verification}`,
-    "Please return a concise plan and the exact code changes only."
+    "Output format:\n1) Short plan (2-5 bullets)\n2) Exact code diff only\n3) Verification steps"
   ].join("\n");
 };
 
@@ -75,14 +63,26 @@ export function PromptBuilderStandalone() {
             [
               ["task", "Task (vague is okay)", 3],
               ["context", "Context", 3],
-              ["constraints", "Constraints", 3],
-              ["files", "Files to touch", 2],
-              ["acceptance", "Acceptance criteria", 3],
-              ["verification", "Verification", 2]
+              ["acceptance", "Acceptance criteria", 3]
             ] as const
           ).map(([key, label, rows]) => (
             <label key={key} className="text-sm font-semibold">
               {label}
+              {key === "task" && (
+                <p className="mt-1 text-xs font-normal text-black/60">
+                  In one sentence, what do you want ChatGPT to do?
+                </p>
+              )}
+              {key === "context" && (
+                <p className="mt-1 text-xs font-normal text-black/60">
+                  What background or details does it need to know?
+                </p>
+              )}
+              {key === "acceptance" && (
+                <p className="mt-1 text-xs font-normal text-black/60">
+                  What should the response include so you know it’s right?
+                </p>
+              )}
               <textarea
                 className="mt-2 w-full rounded-2xl border border-black/10 p-3 text-xs"
                 rows={rows}
